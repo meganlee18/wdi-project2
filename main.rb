@@ -1,0 +1,26 @@
+require "sinatra"
+require "sinatra/reloader"
+require "pg"
+require "pry"
+
+get "/" do
+  erb :index
+end
+
+get "/login" do
+  erb :login
+end
+
+get "/signup" do
+  erb :signup
+end
+
+get "/new" do
+  erb :new
+end
+
+post "/session" do
+end
+
+delete "/session" do
+end
