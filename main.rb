@@ -1,7 +1,8 @@
 require "sinatra"
-require "sinatra/reloader"
+require "sinatra/reloader" #comment this out before deployment
 require "pg"
 require "pry"
+require_relative "db_config.rb"
 
 get "/" do
   erb :index
