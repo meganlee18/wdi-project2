@@ -1,5 +1,4 @@
 require "sinatra"
-#require "sinatra/reloader" #comment this out before deployment
 require "pg"
 require "pry"
 require_relative "active_record"
