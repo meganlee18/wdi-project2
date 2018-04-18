@@ -1,8 +1,8 @@
 require "sinatra"
 require "pg"
 require "pry"
-require_relative "active_record"
-require_relative "db_config.rb"
+require "active_record"
+require_relative "db_config"
 
 get "/" do
   erb :index
