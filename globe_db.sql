@@ -21,3 +21,5 @@ CREATE TABLE users (
     password_digest VARCHAR(400) NOT NULL
 );
 
+alter table photos add content text;
+alter table users add user_name VARCHAR(50) NOT NULL;
