@@ -1,14 +1,15 @@
 <h3> Welcome NAME! </h3>
 
-<h2>Most popular albums right now</h2>
-<h2>Your albums</h2>
+<h2>Most popular images right now</h2>
+<h2>Your images</h2>
+
+<div class='photo'>
+<% @photos.each do |photo| %>
+  <a href ="/photos/<%=photo["id"]%>"><%=photo["name"]%></a>
+  <img src = "<%=photo["image_url"]%>">
+<% end %>
+</div>
 
 <form action="/" method="post">
-<button>Add new album</button>
-</form>
-
-<form action="/" method= "post">
-    <input type="hidden" name= "_method" value= "delete">
-    <input type="hidden" name="id" value="">
-    <button>Delete album</button>
+<button>Add new image</button>
 </form>

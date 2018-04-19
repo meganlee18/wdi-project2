@@ -1,0 +1,20 @@
+<h2><%= @photo['name'] %></h2>
+<img src="<%= @photo['image_url'] %>" alt="">
+<p><%= @photo["content"]%></p>
+
+<form action="/photos/:id" method= "post">
+    <input type="hidden" name= "_method" value= "delete">
+    <input type="hidden" name="id" value="">
+    <button>Delete image</button>
+</form>
+
+<form action="/photos/:id" method= "post">
+    <input type="hidden" name= "photo_id" value= "<%=@photo['id']%>">
+    <textarea name="content"></textarea>
+    <button>Post comment</button>
+</form>
+
+<h2>What people are saying..</h2>
+<% @comments.each do |comment| %>
+ <p><%= comment['content']%></p>
+<% end %>

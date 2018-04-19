@@ -1,9 +1,15 @@
 body h1 {
   font-family: 'Viga', sans-serif;
+  text-align: center;
 }
 
 body {
   font-family: 'Nunito', sans-serif;
+}
+
+body nav {
+  background-color: black;
+  color: white;
 }
 
 .container {
@@ -28,3 +34,13 @@ label {
   padding-top: 10px;
   font-size: 14px;
 }
+
+.photo {
+  display: flex;
+  align-content: center;
+}
+
+.photo a{
+  text-decoration: none;
+}
+
