@@ -3,19 +3,26 @@ require "sinatra/reloader" #comment out before deployment
 require "pg"
 require "pry"
 require "active_record"
-require_relative "db_config"
 
-def run_query(sql)
-  conn = PG.connect(dbname: "globe_db")
-  result = conn.exec(sql)
-  conn.close
-  return result
+require_relative "db_config"
+require_relative "models/photo"
+require_relative "models/comment"
+require_relative "models/user"
+
+enable :sessions
+
+helpers do
+  def current_user
+    User.find_by(id: session[:user_id])
+  end
+
+  def logged_in?
+    current_user ? true : false
+  end
 end
 
 get "/" do
-  sql = "SELECT * FROM photos;"
-  @photos = run_query(sql)
-
+  @photos = Photo.all
   erb :index
 end
 
@@ -23,18 +30,23 @@ post "/" do
   erb :new
 end
 
-#Must disallow users to post blank fields later!
 post "/photos" do
-  sql = "INSERT INTO photos (name, image_url, content) VALUES ('#{params[:name]}', '#{params[:image_url]}', '#{params[:content]}');"
-  run_query(sql)
-  redirect to ("/")
+  photo = Photo.new
+  photo.name = params[:name]
+  photo.image_url = params[:image_url]
+  photo.content = params[:content]
+
+  if photo.save
+    redirect to("/")
+  else
+    erb :new
+  end
 end
 
-delete "/" do
-  #sql = "INSERT INTO albums (name, image_url, content) VALUES ('#{params[:album]}', '#{params[:image_url]}', '#{params[:content]}');"
-  "DELETE FROM albums WHERE id = #{params[:id]};"
+delete "/photos/:id" do
+  photo = Photo.find(params[:id])
+  photo.destroy
 
-  run_query(sql)
   redirect to ("/")
 end
 
@@ -47,34 +59,44 @@ get "/login/signup" do
 end
 
 post "/login/signup" do
-  sql = "INSERT INTO users (user_name,email,password_digest) VALUES ('#{params[:name]}', '#{params[:email]}', '#{params[:password]}');"
-  #need to change password to authenticate!!!
-  run_query(sql)
+  #create garbled password
+  User.create(email: params[:email],
+              user_name: params[:name],
+              password: params[:password])
+
   redirect to ("/login")
 end
 
 post "/session" do
-  "welcome back user"
-  #redirect to ("/")
+  user = User.find_by(email: params[:email])
+  if user && user.authenticate(params[:password])
+    session[:user_id] = user.id
+    redirect to("/")
+  else
+    erb :login
+  end
 end
 
 delete "/session" do
+  session[:user_id] = nil
   redirect to("/login")
 end
 
-#When user clicks on the photo on homepage, takes them to comment/delete pg
+#When user clicks on photo, takes them to comment/delete page
 get "/photos/:id" do
-  sql = "SELECT * FROM photos WHERE id= #{params[:id]};"
-  results = run_query(sql)
-  @photo = results.first
-  @comments = run_query("SELECT * FROM comments WHERE photo_id = #{params[:id]}")
+  @photo = Photo.find(params[:id])
+  @comments = @photo.comments
 
   erb :show
 end
 
 post "/photos/:id" do
-  sql = "INSERT INTO comments (content, photo_id) VALUES ('#{params[:content]}', '#{params[:photo_id]}');"
-  run_query(sql)
+  comment = Comment.new
+  comment.content = params[:content]
+  comment.photo_id = params[:photo_id]
+  comment.user_id = current_user.id
+  comment.save
+
   redirect to("/photos/#{params[:photo_id]}")
 end
 

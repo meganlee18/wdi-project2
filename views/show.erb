@@ -2,7 +2,7 @@
 <img src="<%= @photo['image_url'] %>" alt="">
 <p><%= @photo["content"]%></p>
 
-<form action="/photos/:id" method= "post">
+<form action="/photos/<%= @photo['id']%>" method= "post">
     <input type="hidden" name= "_method" value= "delete">
     <input type="hidden" name="id" value="">
     <button>Delete image</button>
@@ -17,4 +17,6 @@
 <h2>What people are saying..</h2>
 <% @comments.each do |comment| %>
  <p><%= comment['content']%></p>
+ <p><%= User.find(comment['user_id'])['user_name']%></p>
+ 
 <% end %>

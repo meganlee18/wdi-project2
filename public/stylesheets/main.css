@@ -10,6 +10,7 @@ body {
 body nav {
   background-color: black;
   color: white;
+  padding: 10px;
 }
 
 .container {
@@ -17,8 +18,8 @@ body nav {
   border: 2px solid black;
   width: 400px;
   height: 280px;
-  top: 50%;
-  left: 50%;
+  margin: auto;
+  padding: 10px;
 }
 
 form {
