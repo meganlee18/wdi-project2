@@ -1,14 +1,20 @@
 <h2>Create new album</h2>
 
+<div class="new">
 <form action="/photos" method="post">
+<div class="newImage">
 <label for="">Name of image</label>
   <input name="name" type="text">
-<label for="">Where are the photos taken?</label>
-  <textarea name="content"></textarea>
+</div>
+<div class="newPhoto">
+<label for="">Where image was taken</label>
+  <input name="content" type="text">
+</div>
 
-  <a href = "https://imgur.com/">Upload on Imgur</a>
-<label for="">Paste your Imgur image-url here</label>
+<label for=""><a href = "https://imgur.com/">Upload on Imgur</a> Paste your Imgur image-url here</label>
   <input name="image_url" type="text">
+
 <button>Submit</button>
 </form>
+</div>
 

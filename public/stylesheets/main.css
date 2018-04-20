@@ -7,11 +7,44 @@ body {
   font-family: 'Nunito', sans-serif;
 }
 
-body nav {
+.heading {
+  position: relative;
+  text-align: center;
+  font-family: 'Nunito', sans-serif;
+  size: 60px;
+}
+
+.wrap {
   background-color: black;
   color: white;
-  padding: 10px;
 }
+
+body nav {
+  margin: 0 auto;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid #e7e7e7;
+  background-color: #f3f3f3;
+  text-align: center;
+ 
+}
+
+body nav a {
+  display: inline-block;
+  color: #666;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+body nav a:hover:not(.active) {
+  background-color: #ddd;
+}
+
+body nav a.active {
+  color: white;
+  background-color: grey;
+}
+
 
 .container {
   display: inline-block;
@@ -45,3 +78,51 @@ label {
   text-decoration: none;
 }
 
+.login {
+  float: right;
+}
+
+.grid {
+  font-size: 0;
+  flex-flow: row wrap; 
+  display: flex;
+ 
+
+}
+
+.grid img {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+  height:80%;
+  width: 100%;
+ 
+}
+
+.subject {
+  display: block;
+}
+
+.submit {
+  display: block;
+}
+
+.newImage {
+  display: block;
+}
+
+.newPhoto {
+  display: block;
+}
+
+.new a {
+  display: block;
+}
+
+.delete {
+  display: block;
+}
+
+.comment p {
+  display: inline;
+}

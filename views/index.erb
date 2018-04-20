@@ -1,15 +1,31 @@
-<p>Logged in as <%=current_user["user_name"]%></p>
+<div class = "login">
+  <p>Logged in as <%=current_user["user_name"]%></p>
+  <form action="/session" method = "post">
+    <input type='hidden' name='_method' value='delete'>
+  <button>logout</button>
+  </form>
+</div>
+
+<div class="welcome">
 <h3> Welcome <%= current_user["user_name"] %></h3>
+</div>
 
 <h2>Most popular images right now</h2>
+<div class='popular'>
+<%=%>
+</div>
+
 <h2>Your images</h2>
 
-<div class='photo'>
+<div class="grid">
+
 <% @photos.each do |photo| %>
-  <a href ="/photos/<%=photo["id"]%>"><%=photo["name"]%></a>
-  <img src = "<%=photo["image_url"]%>">
+
+  <a href ="/photos/<%=photo["id"]%>"><img src = "<%=photo["image_url"]%>">
+  </a>
 <% end %>
 </div>
+
 
 <form action="/" method="post">
 <button>Add new image</button>
