@@ -8,6 +8,7 @@ require_relative "db_config"
 require_relative "models/photo"
 require_relative "models/comment"
 require_relative "models/user"
+require_relative "models/message"
 
 enable :sessions
 
@@ -106,4 +107,18 @@ end
 
 get "/Contact" do
   erb :contact
+end
+
+post "/messages" do
+  message = Message.new
+  message.content = params[:content]
+  message.user_id = current_user.id
+  message.email = current_user.email
+  message.save
+
+  redirect to("/")
+end
+
+post "/photos/:id/like" do
+  Photo.find()
 end

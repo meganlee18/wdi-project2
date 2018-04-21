@@ -7,15 +7,11 @@
 </div>
 
 <div class="welcome">
-<h3> Welcome <%= current_user["user_name"] %></h3>
+<h1> Welcome <%= current_user["user_name"] %>!</h1>
+<p></p>
 </div>
 
-<h2>Most popular images right now</h2>
-<div class='popular'>
-<%=%>
-</div>
-
-<h2>Your images</h2>
+<h2>Recently added photos</h2>
 
 <div class="grid">
 
@@ -26,7 +22,8 @@
 <% end %>
 </div>
 
-
+<div class="addimagebtn">
 <form action="/" method="post">
-<button>Add new image</button>
+<button>Add image</button>
 </form>
+</div>

@@ -2,6 +2,10 @@
 <img src="<%= @photo['image_url'] %>" alt="">
 <p><%= @photo["content"]%></p>
 
+<form action="/photos/<%= @photo['id']%>/like" method= "post">
+    <button>Like</button>
+</form>
+
 <div class="delete">
 <form action="/photos/<%= @photo['id']%>" method= "post">
     <input type="hidden" name= "_method" value= "delete">
