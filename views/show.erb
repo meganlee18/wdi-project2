@@ -5,6 +5,7 @@
 <form action="/photos/<%= @photo['id']%>/like" method= "post">
     <button>Like</button>
 </form>
+    <%= @photo.like%>
 
 <div class="delete">
 <form action="/photos/<%= @photo['id']%>" method= "post">

@@ -9,7 +9,22 @@
 
 body {
   font-family: 'Nunito', sans-serif;
+  text-align: center;
 }
+
+body::after {
+  content: "";
+  background: url("/stylesheets/images/alps.jpg");
+  background-size: cover;
+  opacity: 0.3;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;   
+}
+
 
 .heading {
   position: relative;
@@ -49,7 +64,6 @@ body nav a.active {
   background-color: grey;
 }
 
-
 .container {
   display: block;
   width: 300px;
@@ -83,14 +97,18 @@ label {
 }
 
 .login {
+  display: inline;
   float: right;
+}
+
+.login p {
+  display: inline;
 }
 
 .grid {
   font-size: 0;
   flex-flow: row wrap; 
   display: flex;
- 
 
 }
 
@@ -147,4 +165,11 @@ label {
 
 .addimagebtn button {
   font-size: 16px;
+}
+
+.contact {
+  padding: 10px;
+  margin: 0 auto;
+  width: 700px;
+  height: auto;
 }

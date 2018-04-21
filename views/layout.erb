@@ -6,6 +6,7 @@
   <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Viga" rel="stylesheet">
   <link rel='stylesheet' href='/stylesheets/main.css'>
+  <script src="/javascripts/application.js"></script>
   </head>
 <body>
   <div class = "wrap">
@@ -15,8 +16,21 @@
   <nav>
     <a href ="/">Home</a>
     <a href ="/About">About</a>
-    <a href ="/Contact">Contact</a><br/>
+    <a href ="/Contact">Contact</a>
+
+    <div class="login">
+      <% if logged_in? %>
+    <p>Logged in as <%=current_user["user_name"]%></p>
+  
+      <form action="/session" method = "post">
+        <input type='hidden' name='_method' value='delete'>
+        <button>logout</button>
+      </form>
+    <% end %>
+    </div>
+
   </nav>
+
   <%= yield %>
 
 </body>

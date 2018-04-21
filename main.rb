@@ -23,8 +23,12 @@ helpers do
 end
 
 get "/" do
-  @photos = Photo.all
-  erb :index
+  if logged_in?
+    @photos = Photo.all
+    erb :index
+  else
+    erb :login
+  end
 end
 
 post "/" do
@@ -69,7 +73,7 @@ post "/login/signup" do
 end
 
 post "/session" do
-  user = User.find_by(email: params[:email])
+  user = User.find_by(user_name: params[:name])
   if user && user.authenticate(params[:password])
     session[:user_id] = user.id
     redirect to("/")
@@ -120,5 +124,8 @@ post "/messages" do
 end
 
 post "/photos/:id/like" do
-  Photo.find()
+  @photo = Photo.find(params[:id])
+  like_count = @photo.like + 1
+  @photo.update(like: like_count)
+  redirect to("/photos/#{params[:id]}")
 end
