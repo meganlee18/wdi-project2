@@ -13,6 +13,10 @@ require_relative "models/message"
 enable :sessions
 
 helpers do
+  def has_warning?
+    @warning ? true : false
+  end
+
   def current_user
     User.find_by(id: session[:user_id])
   end
@@ -40,10 +44,10 @@ post "/photos" do
   photo.name = params[:name]
   photo.image_url = params[:image_url]
   photo.content = params[:content]
-
   if photo.save
     redirect to("/")
   else
+    @warning = "Unable to upload your image. Image name needs to be more than 6 characters. Image URL needs to be less than 400 characters."
     erb :new
   end
 end
@@ -119,8 +123,6 @@ post "/messages" do
   message.user_id = current_user.id
   message.email = current_user.email
   message.save
-
-  redirect to("/")
 end
 
 post "/photos/:id/like" do

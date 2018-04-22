@@ -20,7 +20,7 @@
 
     <div class="login">
       <% if logged_in? %>
-    <p>Logged in as <%=current_user["user_name"]%></p>
+    <p><%=current_user["user_name"]%></p>
   
       <form action="/session" method = "post">
         <input type='hidden' name='_method' value='delete'>
@@ -30,7 +30,11 @@
     </div>
 
   </nav>
-
+  <% if has_warning? %>
+  <div class="warning">
+    <span><%=@warning%></span>
+  </div>
+  <%end %>
   <%= yield %>
 
 </body>

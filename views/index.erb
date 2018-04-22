@@ -1,21 +1,17 @@
-<div class="welcome">
-<h1> Welcome <%= current_user["user_name"] %>!</h1>
-<p></p>
-</div>
-
-<h2>Recently added photos</h2>
-
-<div class="grid">
-
-<% @photos.each do |photo| %>
-
-  <a href ="/photos/<%=photo["id"]%>"><img src = "<%=photo["image_url"]%>">
-  </a>
-<% end %>
-</div>
 
 <div class="addimagebtn">
 <form action="/" method="post">
 <button>Add image</button>
 </form>
 </div>
+
+<div class="row"> 
+
+<% @photos.each do |photo| %>
+<div class="column">
+  <a href ="/photos/<%=photo["id"]%>"><img src = "<%=photo["image_url"]%>" style="width:100%">
+  </a>
+  </div>
+<% end %>
+</div>
+
