@@ -114,7 +114,12 @@ get "/About" do
 end
 
 get "/Contact" do
-  erb :contact
+  if logged_in?
+    erb :contact
+  else
+    @warning = "Please log in before accessing this page"
+    erb :login
+  end
 end
 
 post "/messages" do

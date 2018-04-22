@@ -49,16 +49,35 @@ body nav a:hover:not(.active) {
 body nav a.active {
   color: white;
   background-color: grey;
+
+}
+
+.outside {
+  background-image: url("/stylesheets/images/alps.jpg");
+  width: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
 }
 
 .container {
   display: block;
-  width: 300px;
-  height: 300px;
+  width: 500px;
+  height: 450px;
   margin: 0 auto;
   padding: 20px;
-  font-size: 20px;
+  font-size: 18px;
+  background-color: white;
+  opacity: 0.7;
 }
+
+@media screen and (max-width: 500px) {
+  .container {
+    text-align: left;
+  }
+}
+
 
 form {
   display: inline-block;
@@ -71,7 +90,7 @@ label {
   display: inline-block;
   margin-left: 18px;
   padding-top: 10px;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .photo {
@@ -84,7 +103,6 @@ label {
 }
 
 .login {
-  display: inline;
   float: right;
 }
 
@@ -179,16 +197,29 @@ label {
 
 .loginbtn {
  position: relative;
- right: -56%;
+ right: -40%;
 }
 
 .loginbtn button {
   font-size: 14px;
 }
 
+@media screen and (max-width: 500px) {
+.loginbtn button  {
+  position: relative;
+  right: -40%;
+ }
+}
+
 .signup {
   padding: 15px;
-  font-size: 14px;
+  font-size: 20px;
+}
+
+
+.signup a {
+  color: black;
+  font-weight: bold;
 }
 
 .addimagebtn {
@@ -305,7 +336,11 @@ label {
 
 .column img {
   margin-top: 8px;
-  vertical-align: middle;
+  height: auto;
+}
+
+.column img:hover {
+  transform: scale(1.5); 
 }
 
 /* Responsive layout - makes a two column-layout */
@@ -341,7 +376,7 @@ label {
 }
 
 footer p {
-  position: relative; 
   bottom:0;
   text-align: center;
+  width: 100%;
 }
