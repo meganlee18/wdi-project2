@@ -122,7 +122,13 @@ post "/messages" do
   message.content = params[:content]
   message.user_id = current_user.id
   message.email = current_user.email
-  message.save
+
+  if message.save
+    redirect to("/")
+  else
+    @warning = "Message cannot be empty!"
+    erb :contact
+  end
 end
 
 post "/photos/:id/like" do

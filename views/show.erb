@@ -1,12 +1,3 @@
-<h2><%= @photo['name'] %></h2>
-<img src="<%= @photo['image_url'] %>" alt="" width = "100%">
-<p><%= @photo["content"]%></p>
-
-<form action="/photos/<%= @photo['id']%>/like" method= "post">
-    <button>Like</button>
-</form>
-    <%= @photo.like%>
-
 <div class="delete">
 <form action="/photos/<%= @photo['id']%>" method= "post">
     <input type="hidden" name= "_method" value= "delete">
@@ -15,19 +6,41 @@
 </form>
 </div>
 
+<h2><%= @photo['name'] %></h2>
+<img src="<%= @photo['image_url'] %>" alt="" width = "60%">
+
+<div class="like">
+<form action="/photos/<%= @photo['id']%>/like" method= "post">
+    <button class="btn"><i class="fa fa-heart"></i></button>
+    
+</form>
+    <%= @photo.like%>
+</div>
+
+<p>Location: <%= @photo["content"]%></p>
+
+<div class="comment">
+
+<table>
+  <tr>
+    <th>User</th>
+    <th>Comments</th>
+  </tr>
+
+   <% @comments.each do |comment| %>
+  <tr>
+    <td><%= User.find(comment['user_id'])['user_name']%></td>
+    <td><%= comment['content']%></td>
+  </tr>
+      <% end %>
+
+  </table>
+  </div>
+
+<div class="postcomment">
 <form action="/photos/:id" method= "post">
     <input type="hidden" name= "photo_id" value= "<%=@photo['id']%>">
     <textarea name="content"></textarea>
     <button>Post comment</button>
 </form>
 
-<div class="comment">
-<h2>What people are saying..</h2>
-
-<% @comments.each do |comment| %>
- <p>Comment from <%= User.find(comment['user_id'])['user_name']%>:</p>
- <p><%= comment['content']%></p>
-
-
-<% end %>
- </div>
