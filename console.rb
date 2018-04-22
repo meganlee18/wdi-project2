@@ -7,6 +7,4 @@ require_relative "models/photo"
 require_relative "models/comment"
 require_relative "models/user"
 
-binding.pry
-
 puts "ready for debugging"
