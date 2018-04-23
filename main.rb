@@ -46,7 +46,7 @@ post "/photos" do
   if photo.save
     redirect to("/")
   else
-    @warning = "Unable to upload your image. Image name needs to be more than 6 characters. Image URL needs to be less than 400 characters."
+    @warning = "Unable to upload your image. Image name needs to be at least 6 characters long. Image URL needs to be less than 400 characters."
     erb :new
   end
 end
