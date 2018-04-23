@@ -3,7 +3,7 @@ CREATE DATABASE globe_db;
 CREATE TABLE photos (
     id SERIAL4 PRIMARY KEY,
     name VARCHAR(200),
-    image_url VARCHAR(400)
+    image_url VARCHAR(500)
 );
 
 
